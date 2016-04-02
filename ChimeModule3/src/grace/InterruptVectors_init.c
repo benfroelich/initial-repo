@@ -21,7 +21,8 @@
 #include "_Grace.h"
 
 /* USER CODE START (section: InterruptVectors_init_c_prologue) */
-/* User defined includes, defines, global variables and functions */
+#include "main.h"
+
 /* USER CODE END (section: InterruptVectors_init_c_prologue) */
 
 /*
@@ -57,7 +58,15 @@ void InterruptVectors_graceInit(void)
 __interrupt void PORT1_ISR_HOOK(void)
 {
     /* USER CODE START (section: PORT1_ISR_HOOK) */
-    /* replace this comment with your code */
+	run = 		(P1IN & RUN);
+	buckled = 	!(P1IN & SEATBELT);
+	door_or_keys = 		(P1IN & DOOR);
+
+	none = !(run || !buckled || door_or_keys);
+
+//	P1IFG &= ~(RUN & SEATBELT & DOOR);
+
+	P1IFG &= ~(0xFF);
     /* USER CODE END (section: PORT1_ISR_HOOK) */
 }
 
@@ -68,7 +77,18 @@ __interrupt void PORT1_ISR_HOOK(void)
 __interrupt void TIMER0_A0_ISR_HOOK(void)
 {
     /* USER CODE START (section: TIMER0_A0_ISR_HOOK) */
-    /* replace this comment with your code */
+
+	// periodic interrupt, last set to 10Hz 2016-01-23
+    // This timer is used for turning on the tone to the speaker to set the pulse duration and pattern.
+	static int i = 0;
+	static int pattern[PATTERNSIZE] = {1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0};
+	int enable = pattern[i++];
+	if (i > PATTERNSIZE-1) i=0;
+	if(enable) P1OUT |= BIT6;
+	else       P1OUT &= ~BIT6;
+		//enable = someint & i;	// TODO: look up enable value
+	// increment i but keep in int bounds.
+
     /* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
 

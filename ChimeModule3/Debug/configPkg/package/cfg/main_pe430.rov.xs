@@ -197,7 +197,7 @@ __o = __obj[15]  // ti.targets.msp430.elf.MSP430/ccConfigOpts
 __o = __obj[16]  // ti.targets.msp430.elf.MSP430/ccOpts
     __o['$category'] = String(java.net.URLDecoder.decode('Struct', 'UTF-8'))
     __o['$name'] = String(java.net.URLDecoder.decode('ti.targets.msp430.elf.MSP430%2FccOpts', 'UTF-8'))
-    __o['prefix'] = String(java.net.URLDecoder.decode('-vmsp+--abi%3Deabi+--use_hw_mpy%3Dnone+--include_path%3D%22C%3A%2Fti%2Fccsv6%2Fccs_base%2Fmsp430%2Finclude%22+--include_path%3D%22C%3A%2Fti%2Fccsv6%2Ftools%2Fcompiler%2Fti-cgt-msp430_4.4.6%2Finclude%22+--advice%3Apower%3Dall+-g+--define%3D__MSP430G2553__+--display_error_number+--diag_wrap%3Doff+--diag_warning%3D225+--printf_support%3Dminimal+++-qq+-pdsw225', 'UTF-8'))
+    __o['prefix'] = String(java.net.URLDecoder.decode('-vmsp+--abi%3Deabi+--use_hw_mpy%3Dnone+--include_path%3D%22C%3A%2Fti%2Fccsv6%2Fccs_base%2Fmsp430%2Finclude%22+--include_path%3D%22C%3A%2FUsers%2Fa0225935%2Fworkspace_v6_1%2FChimeModule3%22+--include_path%3D%22C%3A%2Fti%2Fccsv6%2Ftools%2Fcompiler%2Fti-cgt-msp430_4.4.6%2Finclude%22+--advice%3Apower%3Dall+-g+--define%3D__MSP430G2553__+--display_error_number+--diag_wrap%3Doff+--diag_warning%3D225+--printf_support%3Dminimal+++-qq+-pdsw225', 'UTF-8'))
     __o['suffix'] = String(java.net.URLDecoder.decode('', 'UTF-8'))
 
 __o = __obj[17]  // ti.targets.msp430.elf.MSP430/compatibleSuffixes

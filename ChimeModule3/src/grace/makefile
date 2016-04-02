@@ -1,5 +1,5 @@
 # optional compiler flags
-CCOPTS ?= -vmsp --abi=eabi --use_hw_mpy=none --include_path="C:/ti/ccsv6/ccs_base/msp430/include" --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.6/include" --advice:power=all -g --define=__MSP430G2553__ --display_error_number --diag_wrap=off --diag_warning=225 --printf_support=minimal   -qq -pdsw225 
+CCOPTS ?= -vmsp --abi=eabi --use_hw_mpy=none --include_path="C:/ti/ccsv6/ccs_base/msp430/include" --include_path="C:/Users/a0225935/workspace_v6_1/ChimeModule3" --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.6/include" --advice:power=all -g --define=__MSP430G2553__ --display_error_number --diag_wrap=off --diag_warning=225 --printf_support=minimal   -qq -pdsw225 
 
 # required C preprocessor flags
 #    compiler   headers: "C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.6/include"
