@@ -17,7 +17,7 @@
 //  July 2011
 //  Built with Code Composer Studio v5
 //***************************************************************************************
-
+// this is a comment
 #include <msp430.h>				
 
 int main(void) {
