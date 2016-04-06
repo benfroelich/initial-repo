@@ -58,14 +58,16 @@ void InterruptVectors_graceInit(void)
 __interrupt void PORT1_ISR_HOOK(void)
 {
     /* USER CODE START (section: PORT1_ISR_HOOK) */
+	// check the status of the door, seatbelt, and key switches
 	run = 		(P1IN & RUN);
 	buckled = 	!(P1IN & SEATBELT);
 	door_or_keys = 		(P1IN & DOOR);
 
+	// if the car is in run, turn off
 	none = !(run || !buckled || door_or_keys);
 
 //	P1IFG &= ~(RUN & SEATBELT & DOOR);
-
+	//TODO: try P1IFG &= ~(RUN | SEATBELT | DOOR);
 	P1IFG &= ~(0xFF);
     /* USER CODE END (section: PORT1_ISR_HOOK) */
 }
@@ -83,11 +85,11 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	static int i = 0;
 	static int pattern[PATTERNSIZE] = {1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0};
 	int enable = pattern[i++];
-	if (i > PATTERNSIZE-1) i=0;
+	if (i > PATTERNSIZE-1) i=0;	// reset if overflow
 	if(enable) P1OUT |= BIT6;
 	else       P1OUT &= ~BIT6;
 		//enable = someint & i;	// TODO: look up enable value
-	// increment i but keep in int bounds.
+	// increment i but keep in in bounds.
 
     /* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
