@@ -57,9 +57,9 @@ void Timer1_A3_graceInit(void)
      * 
      * TASSEL_2 -- SMCLK
      * ID_0 -- Divider - /1
-     * MC_2 -- Continuous Mode
+     * MC_1 -- Up Mode
      */
-    TA1CTL = TASSEL_2 | ID_0 | MC_2;
+    TA1CTL = TASSEL_2 | ID_0 | MC_1;
 
     /* USER CODE START (section: Timer1_A3_graceInit_epilogue) */
     /* User code */

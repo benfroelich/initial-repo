@@ -3,14 +3,6 @@
  */
 #include <msp430.h>
 
-// user includes
-volatile int run=0, buckled=0, door_or_keys=0, none=0; // globals
-
-//struct Audio_t {
-//
-//};
-
-
 /*
  * ======== Grace related includes ========
  */
@@ -18,7 +10,8 @@ volatile int run=0, buckled=0, door_or_keys=0, none=0; // globals
 
 #include "main.h"
 
-enum state_t { OFF, BUCKLEUP, DONTLEAVE, ERROR };
+// user includes
+volatile int run=0, buckled=0, door_or_keys=0, none=0; // globals
 
 state_t get_state(void) {
 	state_t state = ERROR;
@@ -32,9 +25,26 @@ state_t get_state(void) {
  *  ======== main ========
  */
 
+// store unique tones for each state 2016-04-10
+void setup_sounds(void) {
+	sounds[OFF].period = 			1000;
+	sounds[OFF].pattern = 			0b10101010;
+
+	sounds[BUCKLEUP].period = 		1000;
+	sounds[BUCKLEUP].pattern = 		0b00100100;
+
+	sounds[DONTLEAVE].period = 		1000;
+	sounds[DONTLEAVE].pattern = 	0b10101010;
+
+	sounds[ERROR].period = 			1000;
+	sounds[ERROR].pattern = 		0b10101010;
+}
+
+
 int main(void)
 {
 	state_t state;
+
     Grace_init();                   // Activate Grace-generated configuration
     
     P1DIR |= (BIT0) | BIT6;
@@ -42,11 +52,7 @@ int main(void)
     while(1) {
     	state = get_state();
     	mainloops++;
-    	// commented out BF 2016-04-05, this was just for debug.
-//    	P1OUT ^= BIT0;
-//  	if (state==BUCKLEUP) {
-//    		P1OUT ^= BIT6;
-//    	}
+
     	// TA1CCR0
     }
 

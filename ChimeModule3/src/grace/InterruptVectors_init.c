@@ -58,6 +58,7 @@ void InterruptVectors_graceInit(void)
 __interrupt void PORT1_ISR_HOOK(void)
 {
     /* USER CODE START (section: PORT1_ISR_HOOK) */
+	// TODO:? add debouncing? Maybe wake up the MCU and then it will debounce the pin?
 	// check the status of the door, seatbelt, and key switches
 	run = 		(P1IN & RUN);
 	buckled = 	!(P1IN & SEATBELT);
@@ -69,6 +70,7 @@ __interrupt void PORT1_ISR_HOOK(void)
 //	P1IFG &= ~(RUN & SEATBELT & DOOR);
 	//TODO: try P1IFG &= ~(RUN | SEATBELT | DOOR);
 	P1IFG &= ~(0xFF);
+
     /* USER CODE END (section: PORT1_ISR_HOOK) */
 }
 
@@ -80,16 +82,24 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 {
     /* USER CODE START (section: TIMER0_A0_ISR_HOOK) */
 
-	// periodic interrupt, last set to 10Hz 2016-01-23
+	// SLOW periodic interrupt, last set to
+	//									||||||10Hz|||||||
+	//2016-01-23
     // This timer is used for turning on the tone to the speaker to set the pulse duration and pattern.
 	static int i = 0;
+
+	// stores the tone pattern that the other timer modulates at the PWM frequency. Beep - beep - beeeeeep - ...
 	static int pattern[PATTERNSIZE] = {1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0};
-	int enable = pattern[i++];
+
+	// increment i but keep it in bounds.
+	int PWMEnable = pattern[i++];
 	if (i > PATTERNSIZE-1) i=0;	// reset if overflow
-	if(enable) P1OUT |= BIT6;
-	else       P1OUT &= ~BIT6;
+
+	// enable or disable P3.1 according to the pattern.
+	if(PWMEnable) 	P1OUT |= BIT6;
+	else       		P1OUT &= ~BIT6;
 		//enable = someint & i;	// TODO: look up enable value
-	// increment i but keep in in bounds.
+
 
     /* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
