@@ -53,7 +53,7 @@ void GPIO_graceInit(void)
     /* USER CODE END (section: GPIO_graceInit_prologue) */
 
     /* Port 1 Output Register */
-    P1OUT = 0;
+    P1OUT = BIT0 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
 
     /* Port 1 Direction Register */
     P1DIR = 0;
