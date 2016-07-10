@@ -88,21 +88,20 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	static int i = 0;
 	// stores the tone pattern that the other timer modulates at the PWM frequency. Beep - beep - beeeeeep - ...
 	static int pattern[PATTERNSIZE] = {1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0};
-	int PWMEnable = pattern[i++];	// increment i but keep it in bounds.
+	int PWMEnable = pattern[i%PATTERNSIZE];	// increment i but keep it in bounds.
+	i++;
 
 	run = 				 (P1IN & RUN);
 	buckled = 			!(P1IN & SEATBELT);
-	door = 		 (P1IN & DOOR);
+	door = 		 		 (P1IN & DOOR);
 	// if the car is in run, turn off
 	none = !(run || !buckled || door);
 
-	if (i > PATTERNSIZE-1) i=0;	// reset if overflow
-
 	// enable or disable P3.1 according to the pattern and the state of the system.
 	if(PWMEnable && !sounds[state].killSound) 	P3DIR |= BIT1;
-	else       							P3DIR &= ~BIT1;
+	else       									P3DIR &= ~BIT1;
 		//enable = someint & i;	// TODO: look up enable value
-
+	//TODO: // TA1CCR0
     /* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
 

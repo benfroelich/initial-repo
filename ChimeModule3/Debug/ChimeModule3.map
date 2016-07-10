@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.4.6                      
 ******************************************************************************
->> Linked Sun Jun 19 18:15:22 2016
+>> Linked Sun Jul 10 16:52:35 2016
 
 OUTPUT FILE NAME:   <ChimeModule3.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000c210
+ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000c260
 
 
 MEMORY CONFIGURATION
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 0000c000   00003fde  00000390  00003c4e  RWIX
+  FLASH                 0000c000   00003fde  000003d0  00003c0e  RWIX
   BSLSIGNATURE          0000ffde   00000002  00000002  00000000  RWIX  ffff 
   INT00                 0000ffe0   00000002  00000002  00000000  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
@@ -57,38 +57,39 @@ section   page    origin      length       input sections
                   000003c0    00000002     boot.ae430 : boot.oe430 (.stack)
                   000003c2    0000003e     --HOLE--
 
-.text      0    0000c000    00000366     
-                  0000c000    00000094     grace.lib : InterruptVectors_init.obj (.text:TIMER0_A0_ISR_HOOK)
-                  0000c094    00000064     rts430_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
-                  0000c0f8    00000064     boot.ae430 : autoinit.oe430 (.text:_auto_init)
-                  0000c15c    00000042     main.obj (.text:_Z12setup_soundsv)
-                  0000c19e    0000003e     grace.lib : GPIO_init.obj (.text:GPIO_graceInit)
-                  0000c1dc    00000034               : BCSplus_init.obj (.text:BCSplus_graceInit)
-                  0000c210    00000026     boot.ae430 : boot_special.oe430 (.text:_c_int00_noargs_noexit)
-                  0000c236    00000024     grace.lib : Grace_init.obj (.text:Grace_init)
-                  0000c25a    00000022     main.obj (.text:main)
-                  0000c27c    0000001e     main.obj (.text:_Z9get_statev)
-                  0000c29a    0000001c     grace.lib : System_init.obj (.text:System_graceInit)
-                  0000c2b6    00000014               : Timer0_A3_init.obj (.text:Timer0_A3_graceInit)
-                  0000c2ca    00000014               : Timer1_A3_init.obj (.text:Timer1_A3_graceInit)
-                  0000c2de    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  0000c2f2    00000014                     : mult16.obj (.text)
-                  0000c306    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  0000c318    00000012                     : memcpy.obj (.text:memcpy)
-                  0000c32a    00000010                     : epilog.obj (.text)
-                  0000c33a    0000000e     grace.lib : InterruptVectors_init.obj (.text:PORT1_ISR_HOOK)
-                  0000c348    00000008               : WDTplus_init.obj (.text:WDTplus_graceInit)
-                  0000c350    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
-                  0000c356    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  0000c35c    00000004     boot.ae430 : pre_init.oe430 (.text:_system_pre_init)
-                  0000c360    00000004     rts430_eabi.lib : exit.obj (.text:abort)
-                  0000c364    00000002     grace.lib : InterruptVectors_init.obj (.text:InterruptVectors_graceInit)
+.text      0    0000c000    000003a6     
+                  0000c000    00000098     grace.lib : InterruptVectors_init.obj (.text:TIMER0_A0_ISR_HOOK)
+                  0000c098    00000064     rts430_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  0000c0fc    00000064     boot.ae430 : autoinit.oe430 (.text:_auto_init)
+                  0000c160    0000004c     rts430_eabi.lib : lsr16.obj (.text)
+                  0000c1ac    00000042     main.obj (.text:_Z12setup_soundsv)
+                  0000c1ee    0000003e     grace.lib : GPIO_init.obj (.text:GPIO_graceInit)
+                  0000c22c    00000034               : BCSplus_init.obj (.text:BCSplus_graceInit)
+                  0000c260    00000026     boot.ae430 : boot_special.oe430 (.text:_c_int00_noargs_noexit)
+                  0000c286    00000024     grace.lib : Grace_init.obj (.text:Grace_init)
+                  0000c2aa    0000001e     main.obj (.text:_Z9get_statev)
+                  0000c2c8    0000001c     grace.lib : System_init.obj (.text:System_graceInit)
+                  0000c2e4    00000014               : Timer0_A3_init.obj (.text:Timer0_A3_graceInit)
+                  0000c2f8    00000014               : Timer1_A3_init.obj (.text:Timer1_A3_graceInit)
+                  0000c30c    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  0000c320    00000014                     : mult16.obj (.text)
+                  0000c334    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  0000c346    00000012     main.obj (.text:main)
+                  0000c358    00000012     rts430_eabi.lib : memcpy.obj (.text:memcpy)
+                  0000c36a    00000010                     : epilog.obj (.text)
+                  0000c37a    0000000e     grace.lib : InterruptVectors_init.obj (.text:PORT1_ISR_HOOK)
+                  0000c388    00000008               : WDTplus_init.obj (.text:WDTplus_graceInit)
+                  0000c390    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+                  0000c396    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0000c39c    00000004     boot.ae430 : pre_init.oe430 (.text:_system_pre_init)
+                  0000c3a0    00000004     rts430_eabi.lib : exit.obj (.text:abort)
+                  0000c3a4    00000002     grace.lib : InterruptVectors_init.obj (.text:InterruptVectors_graceInit)
 
-.cinit     0    0000c366    0000002a     
-                  0000c366    00000018     (.cinit..data.load) [load image, compression = rle]
-                  0000c37e    00000006     (__TI_handler_table)
-                  0000c384    00000004     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000c388    00000008     (__TI_cinit_table)
+.cinit     0    0000c3a6    0000002a     
+                  0000c3a6    00000018     (.cinit..data.load) [load image, compression = rle]
+                  0000c3be    00000006     (__TI_handler_table)
+                  0000c3c4    00000004     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000c3c8    00000008     (__TI_cinit_table)
 
 .init_array 
 *          0    0000c000    00000000     UNINITIALIZED
@@ -154,14 +155,14 @@ xdc.meta   0    00000000    000000ee     COPY SECTION
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000c388 records: 2, size/record: 4, table size: 8
-	.data: load addr=0000c366, load size=00000018 bytes, run addr=00000200, run size=0000002a bytes, compression=rle
-	.bss: load addr=0000c384, load size=00000004 bytes, run addr=0000022a, run size=0000001a bytes, compression=zero_init
+__TI_cinit_table @ 0000c3c8 records: 2, size/record: 4, table size: 8
+	.data: load addr=0000c3a6, load size=00000018 bytes, run addr=00000200, run size=0000002a bytes, compression=rle
+	.bss: load addr=0000c3c4, load size=00000004 bytes, run addr=0000022a, run size=0000001a bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000c37e records: 3, size/record: 2, table size: 6
+__TI_handler_table @ 0000c3be records: 3, size/record: 2, table size: 6
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -181,8 +182,8 @@ address   name
 00000057  BCSCTL1                         
 00000058  BCSCTL2                         
 00000053  BCSCTL3                         
-0000c1dc  BCSplus_graceInit               
-0000c360  C$$EXIT                         
+0000c22c  BCSplus_graceInit               
+0000c3a0  C$$EXIT                         
 00000059  CACTL1                          
 0000005a  CACTL2                          
 000010fb  CALBC1_12MHZ                    
@@ -198,13 +199,13 @@ address   name
 00000128  FCTL1                           
 0000012a  FCTL2                           
 0000012c  FCTL3                           
-0000c19e  GPIO_graceInit                  
-0000c236  Grace_init                      
+0000c1ee  GPIO_graceInit                  
+0000c286  Grace_init                      
 00000000  IE1                             
 00000001  IE2                             
 00000002  IFG1                            
 00000003  IFG2                            
-0000c364  InterruptVectors_graceInit      
+0000c3a4  InterruptVectors_graceInit      
 00000022  P1DIR                           
 00000025  P1IE                            
 00000024  P1IES                           
@@ -229,8 +230,8 @@ address   name
 00000010  P3REN                           
 0000001b  P3SEL                           
 00000043  P3SEL2                          
-0000c33a  PORT1_ISR_HOOK                  
-0000c29a  System_graceInit                
+0000c37a  PORT1_ISR_HOOK                  
+0000c2c8  System_graceInit                
 00000172  TA0CCR0                         
 00000174  TA0CCR1                         
 00000176  TA0CCR2                         
@@ -255,8 +256,8 @@ address   name
 000010c0  TLV_CHECKSUM                    
 000010f7  TLV_DCO_30_LEN                  
 000010f6  TLV_DCO_30_TAG                  
-0000c2b6  Timer0_A3_graceInit             
-0000c2ca  Timer1_A3_graceInit             
+0000c2e4  Timer0_A3_graceInit             
+0000c2f8  Timer1_A3_graceInit             
 0000005d  UCA0ABCTL                       
 00000062  UCA0BR0                         
 00000063  UCA0BR1                         
@@ -279,24 +280,24 @@ address   name
 0000006d  UCB0STAT                        
 0000006f  UCB0TXBUF                       
 00000120  WDTCTL                          
-0000c348  WDTplus_graceInit               
-0000c15c  _Z12setup_soundsv               
-0000c27c  _Z9get_statev                   
+0000c388  WDTplus_graceInit               
+0000c1ac  _Z12setup_soundsv               
+0000c2aa  _Z9get_statev                   
 00000000  __ASM__                         
 00000064  __ISA__                         
 00000076  __PLAT__                        
 00000400  __STACK_END                     
 00000040  __STACK_SIZE                    
 0000009a  __TARG__                        
-0000c388  __TI_CINIT_Base                 
-0000c390  __TI_CINIT_Limit                
-0000c37e  __TI_Handler_Table_Base         
-0000c384  __TI_Handler_Table_Limit        
+0000c3c8  __TI_CINIT_Base                 
+0000c3d0  __TI_CINIT_Limit                
+0000c3be  __TI_Handler_Table_Base         
+0000c3c4  __TI_Handler_Table_Limit        
 UNDEFED   __TI_INITARRAY_Base             
 UNDEFED   __TI_INITARRAY_Limit            
-0000c350  __TI_ISR_TRAP                   
-0000c306  __TI_decompress_none            
-0000c356  __TI_decompress_rle24           
+0000c390  __TI_ISR_TRAP                   
+0000c334  __TI_decompress_none            
+0000c396  __TI_decompress_rle24           
 0000ffe0  __TI_int00                      
 0000ffe4  __TI_int02                      
 0000ffe6  __TI_int03                      
@@ -310,30 +311,46 @@ UNDEFED   __TI_INITARRAY_Limit
 0000fff8  __TI_int12                      
 0000fffa  __TI_int13                      
 0000fffc  __TI_int14                      
-0000c2de  __TI_zero_init                  
+0000c30c  __TI_zero_init                  
 000000c6  __TRDR__                        
 ffffffff  __binit__                       
 ffffffff  __c_args__                      
-0000c336  __mspabi_func_epilog_1          
-0000c334  __mspabi_func_epilog_2          
-0000c332  __mspabi_func_epilog_3          
-0000c330  __mspabi_func_epilog_4          
-0000c32e  __mspabi_func_epilog_5          
-0000c32c  __mspabi_func_epilog_6          
-0000c32a  __mspabi_func_epilog_7          
-0000c2f2  __mspabi_mpyi                   
-0000c2f2  __mspabi_mpyi_sw                
-0000c0f8  _auto_init                      
-0000c210  _c_int00_noargs_noexit          
+0000c376  __mspabi_func_epilog_1          
+0000c374  __mspabi_func_epilog_2          
+0000c372  __mspabi_func_epilog_3          
+0000c370  __mspabi_func_epilog_4          
+0000c36e  __mspabi_func_epilog_5          
+0000c36c  __mspabi_func_epilog_6          
+0000c36a  __mspabi_func_epilog_7          
+0000c320  __mspabi_mpyi                   
+0000c320  __mspabi_mpyi_sw                
+0000c160  __mspabi_srli                   
+0000c1a6  __mspabi_srli_1                 
+0000c182  __mspabi_srli_10                
+0000c17e  __mspabi_srli_11                
+0000c17a  __mspabi_srli_12                
+0000c176  __mspabi_srli_13                
+0000c172  __mspabi_srli_14                
+0000c16e  __mspabi_srli_15                
+0000c1a2  __mspabi_srli_2                 
+0000c19e  __mspabi_srli_3                 
+0000c19a  __mspabi_srli_4                 
+0000c196  __mspabi_srli_5                 
+0000c192  __mspabi_srli_6                 
+0000c18e  __mspabi_srli_7                 
+0000c18a  __mspabi_srli_8                 
+0000c186  __mspabi_srli_9                 
+0000c0fc  _auto_init                      
+0000c260  _c_int00_noargs_noexit          
 0000fffe  _reset_vector                   
 000003c0  _stack                          
-0000c35c  _system_pre_init                
-0000c360  abort                           
+0000c39c  _system_pre_init                
+0000c3a0  abort                           
 ffffffff  binit                           
 00000222  buckled                         
 00000224  door                            
-0000c25a  main                            
-0000c318  memcpy                          
+0000c346  main                            
+0000c358  memcpy                          
 00000226  none                            
 00000220  run                             
 0000022a  sounds                          
@@ -465,41 +482,57 @@ address   name
 000010fe  CALDCO_1MHZ                     
 000010ff  CALBC1_1MHZ                     
 0000c000  TIMER0_A0_ISR_HOOK              
-0000c0f8  _auto_init                      
-0000c15c  _Z12setup_soundsv               
-0000c19e  GPIO_graceInit                  
-0000c1dc  BCSplus_graceInit               
-0000c210  _c_int00_noargs_noexit          
-0000c236  Grace_init                      
-0000c25a  main                            
-0000c27c  _Z9get_statev                   
-0000c29a  System_graceInit                
-0000c2b6  Timer0_A3_graceInit             
-0000c2ca  Timer1_A3_graceInit             
-0000c2de  __TI_zero_init                  
-0000c2f2  __mspabi_mpyi                   
-0000c2f2  __mspabi_mpyi_sw                
-0000c306  __TI_decompress_none            
-0000c318  memcpy                          
-0000c32a  __mspabi_func_epilog_7          
-0000c32c  __mspabi_func_epilog_6          
-0000c32e  __mspabi_func_epilog_5          
-0000c330  __mspabi_func_epilog_4          
-0000c332  __mspabi_func_epilog_3          
-0000c334  __mspabi_func_epilog_2          
-0000c336  __mspabi_func_epilog_1          
-0000c33a  PORT1_ISR_HOOK                  
-0000c348  WDTplus_graceInit               
-0000c350  __TI_ISR_TRAP                   
-0000c356  __TI_decompress_rle24           
-0000c35c  _system_pre_init                
-0000c360  C$$EXIT                         
-0000c360  abort                           
-0000c364  InterruptVectors_graceInit      
-0000c37e  __TI_Handler_Table_Base         
-0000c384  __TI_Handler_Table_Limit        
-0000c388  __TI_CINIT_Base                 
-0000c390  __TI_CINIT_Limit                
+0000c0fc  _auto_init                      
+0000c160  __mspabi_srli                   
+0000c16e  __mspabi_srli_15                
+0000c172  __mspabi_srli_14                
+0000c176  __mspabi_srli_13                
+0000c17a  __mspabi_srli_12                
+0000c17e  __mspabi_srli_11                
+0000c182  __mspabi_srli_10                
+0000c186  __mspabi_srli_9                 
+0000c18a  __mspabi_srli_8                 
+0000c18e  __mspabi_srli_7                 
+0000c192  __mspabi_srli_6                 
+0000c196  __mspabi_srli_5                 
+0000c19a  __mspabi_srli_4                 
+0000c19e  __mspabi_srli_3                 
+0000c1a2  __mspabi_srli_2                 
+0000c1a6  __mspabi_srli_1                 
+0000c1ac  _Z12setup_soundsv               
+0000c1ee  GPIO_graceInit                  
+0000c22c  BCSplus_graceInit               
+0000c260  _c_int00_noargs_noexit          
+0000c286  Grace_init                      
+0000c2aa  _Z9get_statev                   
+0000c2c8  System_graceInit                
+0000c2e4  Timer0_A3_graceInit             
+0000c2f8  Timer1_A3_graceInit             
+0000c30c  __TI_zero_init                  
+0000c320  __mspabi_mpyi                   
+0000c320  __mspabi_mpyi_sw                
+0000c334  __TI_decompress_none            
+0000c346  main                            
+0000c358  memcpy                          
+0000c36a  __mspabi_func_epilog_7          
+0000c36c  __mspabi_func_epilog_6          
+0000c36e  __mspabi_func_epilog_5          
+0000c370  __mspabi_func_epilog_4          
+0000c372  __mspabi_func_epilog_3          
+0000c374  __mspabi_func_epilog_2          
+0000c376  __mspabi_func_epilog_1          
+0000c37a  PORT1_ISR_HOOK                  
+0000c388  WDTplus_graceInit               
+0000c390  __TI_ISR_TRAP                   
+0000c396  __TI_decompress_rle24           
+0000c39c  _system_pre_init                
+0000c3a0  C$$EXIT                         
+0000c3a0  abort                           
+0000c3a4  InterruptVectors_graceInit      
+0000c3be  __TI_Handler_Table_Base         
+0000c3c4  __TI_Handler_Table_Limit        
+0000c3c8  __TI_CINIT_Base                 
+0000c3d0  __TI_CINIT_Limit                
 0000ffe0  __TI_int00                      
 0000ffe4  __TI_int02                      
 0000ffe6  __TI_int03                      
@@ -520,4 +553,4 @@ ffffffff  binit
 UNDEFED   __TI_INITARRAY_Base             
 UNDEFED   __TI_INITARRAY_Limit            
 
-[171 symbols]
+[187 symbols]
