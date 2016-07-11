@@ -21,19 +21,19 @@ state_t get_state(void) {
 // store unique tones for each state 2016-04-10
 void setup_sounds(void) {
 	sounds[OFF].period = 			1000;
-	sounds[OFF].pattern = 			0b10101010;
+	sounds[OFF].pattern = 			0b1010101010101010;
 	sounds[OFF].killSound = 		1;
 
 	sounds[BUCKLEUP].period = 		1000;
-	sounds[BUCKLEUP].pattern = 		0b00100100;
+	sounds[BUCKLEUP].pattern = 		0b0010010000100100;
 	sounds[BUCKLEUP].killSound = 	0;
 
-	sounds[DONTLEAVE].period = 		1000;
-	sounds[DONTLEAVE].pattern = 	0b10100000;
+	sounds[DONTLEAVE].period = 		1500;
+	sounds[DONTLEAVE].pattern = 	0b1010110010100000;
 	sounds[DONTLEAVE].killSound = 	0;
 
-	sounds[ERROR].period = 			1000;
-	sounds[ERROR].pattern = 		0b10101010;
+	sounds[ERROR].period = 			2000;
+	sounds[ERROR].pattern = 		0b1010101010101010;
 	sounds[ERROR].killSound = 		0;
 }
 

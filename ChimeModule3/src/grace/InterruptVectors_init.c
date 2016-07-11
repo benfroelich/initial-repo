@@ -86,10 +86,7 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	//2016-01-23
     // This timer is used for turning on the tone to the speaker to set the pulse duration and pattern.
 	static int i = 0;
-	// stores the tone pattern that the other timer modulates at the PWM frequency. Beep - beep - beeeeeep - ...
-	static int pattern[PATTERNSIZE] = {1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0};
-	int PWMEnable = pattern[i%PATTERNSIZE];	// increment i but keep it in bounds.
-	i++;
+	int PWMEnable = 0;
 
 	run = 				 (P1IN & RUN);
 	buckled = 			!(P1IN & SEATBELT);
@@ -97,12 +94,15 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	// if the car is in run, turn off
 	none = !(run || !buckled || door);
 
+	PWMEnable = (sounds[state].pattern & (1<<i));	// increment through the pattern using i
 	// enable or disable P3.1 according to the pattern and the state of the system.
 	if(PWMEnable && !sounds[state].killSound) 	P3DIR |= BIT1;
 	else       									P3DIR &= ~BIT1;
-		//enable = someint & i;	// TODO: look up enable value
+
 	//TODO: // TA1CCR0
-    /* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
+	i++;
+	if (i>PATTERNSIZE-1) i = 0;
+	/* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
 
 
