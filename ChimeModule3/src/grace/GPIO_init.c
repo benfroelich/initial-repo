@@ -62,13 +62,10 @@ void GPIO_graceInit(void)
     P1REN = BIT0 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
 
     /* Port 1 Interrupt Edge Select Register */
-    P1IES = BIT0 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
+    P1IES = 0;
 
     /* Port 1 Interrupt Flag Register */
     P1IFG = 0;
-
-    /* Port 1 Interrupt Enable Register */
-    P1IE = BIT0 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
 
     /* Port 2 Output Register */
     P2OUT = 0;

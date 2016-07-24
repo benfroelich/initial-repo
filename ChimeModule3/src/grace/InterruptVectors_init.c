@@ -21,8 +21,8 @@
 #include "_Grace.h"
 
 /* USER CODE START (section: InterruptVectors_init_c_prologue) */
+#include "chime.h"
 #include "main.h"
-
 /* USER CODE END (section: InterruptVectors_init_c_prologue) */
 
 /*
@@ -58,19 +58,7 @@ void InterruptVectors_graceInit(void)
 __interrupt void PORT1_ISR_HOOK(void)
 {
     /* USER CODE START (section: PORT1_ISR_HOOK) */
-	// TODO:? add debouncing? Maybe wake up the MCU and then it will debounce the pin?
-	// check the status of the door, seatbelt, and key switches
-//	run = 				 (P1IN & RUN);
-//	buckled = 			!(P1IN & SEATBELT);
-//	door_or_keys = 		 (P1IN & DOOR);
-//
-//	// if the car is in run, turn off
-//	none = !(run || !buckled || door_or_keys);
-
-	//P1IFG &= ~(RUN & SEATBELT & DOOR);
-	//TODO: try P1IFG &= ~(RUN | SEATBELT | DOOR);
-	P1IFG &= ~(0xFF);
-
+    /* replace this comment with your code */
     /* USER CODE END (section: PORT1_ISR_HOOK) */
 }
 
@@ -85,23 +73,25 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	//									||||||10Hz|||||||
 	//2016-01-23
     // This timer is used for turning on the tone to the speaker to set the pulse duration and pattern.
-	static int i = 0;
+	//TODO: __bic_SR_register_on_exit(LPM4_bits);	// exit low-power mode
+	static int interruptCnt = 0;	// static variable to keep track of what part of the chime pattern we are in
 	int PWMEnable = 0;
 
-	run = 				 (P1IN & RUN);
-	buckled = 			!(P1IN & SEATBELT);
-	door = 		 		 (P1IN & DOOR);
+	run = 		(P1IN & RUN);
+	buckled = 	(P1IN & SEATBELT);
+	door = 		!(P1IN & DOOR);
 	// if the car is in run, turn off
 	none = !(run || !buckled || door);
 
-	PWMEnable = (sounds[state].pattern & (1<<i));	// increment through the pattern using i
+	PWMEnable = ( sounds[ChimeWarnState].pattern & (1<<interruptCnt) );	// increment through the pattern using i
 	// enable or disable P3.1 according to the pattern and the state of the system.
-	if(PWMEnable && !sounds[state].killSound) 	P3DIR |= BIT1;
-	else       									P3DIR &= ~BIT1;
+	if(PWMEnable && !sounds[ChimeWarnState].killSound) 	P3DIR |= BIT1;
+	else P3DIR &= ~BIT1;
+	TA1CCR0 = sounds[ChimeWarnState].periodCnt;
 
-	//TODO: // TA1CCR0
-	i++;
-	if (i>PATTERNSIZE-1) i = 0;
+	interruptCnt++;	// increment the interrupt counter, to index the sound pattern
+	if (interruptCnt>PATTERNSIZE) interruptCnt = 0;	// loop around if it exceeds the pattern size
+
 	/* USER CODE END (section: TIMER0_A0_ISR_HOOK) */
 }
 
