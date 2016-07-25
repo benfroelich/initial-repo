@@ -78,16 +78,16 @@ __interrupt void TIMER0_A0_ISR_HOOK(void)
 	int PWMEnable = 0;
 
 	run = 		(P1IN & RUN);
-	buckled = 	(P1IN & SEATBELT);
+	buckled = 	!(P1IN & SEATBELT);
 	door = 		!(P1IN & DOOR);
 	// if the car is in run, turn off
 	none = !(run || !buckled || door);
 
-	PWMEnable = ( sounds[ChimeWarnState].pattern & (1<<interruptCnt) );	// increment through the pattern using i
+	PWMEnable = sounds[ChimeWarnState].notes[interruptCnt].play;	// increment through the pattern using i
 	// enable or disable P3.1 according to the pattern and the state of the system.
 	if(PWMEnable && !sounds[ChimeWarnState].killSound) 	P3DIR |= BIT1;
 	else P3DIR &= ~BIT1;
-	TA1CCR0 = sounds[ChimeWarnState].periodCnt;
+	TA1CCR0 = sounds[ChimeWarnState].notes[interruptCnt].periodCnt;
 
 	interruptCnt++;	// increment the interrupt counter, to index the sound pattern
 	if (interruptCnt>PATTERNSIZE) interruptCnt = 0;	// loop around if it exceeds the pattern size
